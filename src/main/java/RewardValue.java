@@ -1,21 +1,24 @@
-import java.util.*;
 public class RewardValue{
-    private double cashValue;
-    private double milesValue;
+    private final double cashValue;
     private static final double milesToCash = 0.0035;
     public RewardValue(double cashValue){
         this.cashValue = cashValue;
-        this.milesValue = cashValue/milesToCash;
     }
     public RewardValue(int milesValue) {
-        this.milesValue = milesValue;
-        this.cashValue = milesValue * milesToCash;
+        this.cashValue = convetToCash(milesValue);
+    }
+    private static int convertToMiles(double cashValue){
+        return (int) (cashValue / milesToCash);
+    }
+    
+    private static double convertToCash(int milesValue) {
+        return milesValue * MILES_TO_CASH_CONVERSION_RATE;
     }
     public double getCashValue() {
         return cashValue;
     }
     public double getMilesValue() {
-        return milesValue;
+        return convertToMiles(this.cashValue);
     }
 
 }
